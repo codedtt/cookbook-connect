@@ -1,10 +1,9 @@
-// src/graphql/types/user.type.ts
+// src/graphql/types/author.type.ts
 
 import { Field, ObjectType, ID } from '@nestjs/graphql';
-import { Recipe } from './recipe.type';
 
 @ObjectType()
-export class User {
+export class Author {
   @Field(() => ID)
   id: number;
 
@@ -13,7 +12,4 @@ export class User {
 
   @Field({ nullable: true })
   name: string;
-
-  @Field(() => [Recipe], { nullable: true })
-  recipes: Recipe[] | null;
 }

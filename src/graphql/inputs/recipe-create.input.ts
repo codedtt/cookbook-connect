@@ -21,7 +21,7 @@ export class RecipeCreateInput {
   @Field(() => Int, { nullable: true })
   cookingTime: number;
 
-  @Field(() => Int)
+   @Field(() => Int, { nullable: true })
   authorId: number;
 
   @Field(() => [IngredientCreateInput])

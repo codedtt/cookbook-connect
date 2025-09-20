@@ -1,7 +1,7 @@
 // src/graphql/types/recipe.type.ts
 
 import { Field, ObjectType, ID } from '@nestjs/graphql';
-import { User } from './user.type'; // Corrected import
+import { Author } from './author.type'; // Corrected import
 import { Ingredient } from './ingredient.type'; // Corrected import
 import { Instruction } from './instruction.type'; // Corrected import
 
@@ -13,20 +13,20 @@ export class Recipe {
   @Field()
   title: string;
 
-  @Field()
-  description: string;
+  @Field(() => String, { nullable: true })
+  description: string | null;
 
-  @Field({ nullable: true })
-  cuisine: string;
+  @Field(() => String, { nullable: true })
+  cuisine: string | null;
 
-  @Field({ nullable: true })
-  difficulty: string;
+  @Field(() => String, { nullable: true })
+  difficulty: string | null;
 
-  @Field({ nullable: true })
-  cookingTime: number;
+  @Field(() => Number, { nullable: true })
+  cookingTime: number | null;
 
-  @Field(() => User)
-  author: User;
+  @Field(() => Author)
+  author: Author;
 
   @Field(() => [Ingredient])
   ingredients: Ingredient[];
