@@ -6,7 +6,7 @@ Cookbook-Connect is a modern recipe-sharing platform where users can upload thei
 
 2. Search & Discovery: An advanced search engine powered by Elasticsearch allows users to find recipes by title, description, and even by matching ingredients they have available.
 
--- Yet to be implemented:
+Yet to be implemented:
 3. User Profiles & Social Features: Users can follow other cooking enthusiasts, rate and comment on recipes, and see the latest creations from the people they follow.
 
 4. AI-Powered Suggestions: Integrated AI provides intelligent suggestions for recipe improvements, ingredient substitutions for dietary needs, and cooking tips.
