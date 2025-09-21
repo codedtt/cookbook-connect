@@ -1,98 +1,140 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+### Cookbook-Connect
+Cookbook-Connect is a modern recipe-sharing platform where users can upload their own recipes, discover new dishes by searching with ingredients they have at home, and connect with other cooking enthusiasts. This project is a comprehensive full-stack application that demonstrates the use of modern backend technologies and advanced features.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+### Key Features
+1. Recipe Management: Users can create, read, update, and delete their own recipes, complete with detailed ingredients and step-by-step instructions.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+2. Search & Discovery: An advanced search engine powered by Elasticsearch allows users to find recipes by title, description, and even by matching ingredients they have available.
 
-## Description
+-- Yet to be implemented:
+3. User Profiles & Social Features: Users can follow other cooking enthusiasts, rate and comment on recipes, and see the latest creations from the people they follow.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+4. AI-Powered Suggestions: Integrated AI provides intelligent suggestions for recipe improvements, ingredient substitutions for dietary needs, and cooking tips.
 
-## Project setup
+5. Real-time Updates: Get live notifications for new ratings, comments, and new recipes from followed users without needing to refresh the page.
 
+### Technical Stack
+The application is built on a robust and scalable architecture with the following core technologies:
+
+Backend: NestJS with TypeScript
+
+API: GraphQL with Apollo Server for a flexible and efficient API
+
+Database: PostgreSQL for structured data storage, managed with Prisma ORM
+
+Search: Elasticsearch for high-performance, full-text search capabilities
+
+Real-time: GraphQL Subscriptions and Redis for real-time features and notifications
+
+AI: OpenAI API for intelligent recipe enhancements and suggestions
+
+### Getting Started
+Follow these steps to set up and run Cookbook-Connect on your local machine.
+
+Prerequisites
+Node.js (LTS version)
+
+Docker & Docker Compose
+
+Installation
+Clone the repository:
+
+Bash
 ```bash
-$ npm install
+git clone https://github.com/codedtt/cookbook-connect.git
+cd cookbook-connect
+Set up environment variables:
+Create a .env file in the root directory and add your database and other service credentials.
+```
+Code snippet
+```bash
+DATABASE_URL="postgresql://user:password@localhost:5432/cookbook-connect"
+JWT_SECRET="your_jwt_secret_key"
+OPENAI_API_KEY="your_openai_api_key"
+Start the database and search services:
+Use Docker Compose to spin up the PostgreSQL and Elasticsearch containers.
 ```
 
-## Compile and run the project
-
+Bash
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+docker-compose up -d
+Install dependencies:
 ```
 
-## Run tests
-
+Bash
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
+Run database migrations:
+Apply the Prisma schema to your PostgreSQL database.
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+Bash
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npx prisma migrate dev --name init
+Start the development server:
+```
+Bash
+```bash
+npm run start:dev
+The server will be running at http://localhost:3000. You can access the GraphQL Playground at http://localhost:3000/graphql to interact with the API.
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### API Endpoints
+You can interact with the API using the GraphQL Playground. Below are a few key mutations and queries.
 
-## Resources
+### login Mutation
+Authenticate a user to get a JWT.
+```bash
+GraphQL
 
-Check out a few resources that may come in handy when working with NestJS:
+mutation {
+  login(input: { email: "testuser@example.com", password: "password123" }) {
+    access_token
+  }
+}
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### createRecipe Mutation
+Create a new recipe. Remember to include the Authorization header with your JWT.
+```bash
+GraphQL
 
-## Support
+mutation {
+  createRecipe(input: {
+    title: "Simple Tomato Pasta",
+    description: "A quick and easy pasta dish.",
+    cuisine: "Italian",
+    difficulty: "Easy",
+    cookingTime: 20,
+    ingredients: [{ name: "Pasta", quantity: "200g" }],
+    instructions: [{ step: 1, text: "Boil the pasta." }]
+  }) {
+    id
+    title
+    author {
+      name
+    }
+  }
+}
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### searchRecipes Query
+Find recipes based on ingredients and other filters.
+```bash
+GraphQL
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+query {
+  searchRecipes(
+    ingredients: ["Pasta", "Tomato"],
+    difficulty: "Easy",
+    cuisine: "Italian"
+  ) {
+    id
+    title
+    description
+    author {
+      name
+    }
+  }
+}
+```
