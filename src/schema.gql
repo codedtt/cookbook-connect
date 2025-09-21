@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type AuthPayload {
+  access_token: String!
+  user: User!
+}
+
 type Author {
   email: String!
   id: ID!
@@ -53,17 +58,15 @@ input LoginInput {
   password: String!
 }
 
-type LoginResponse {
-  access_token: String!
-}
-
 type Mutation {
   addComment(input: CommentCreateInput!): Comment!
   addRating(input: RatingCreateInput!): Rating!
   createRecipe(input: RecipeCreateInput!): Recipe!
   deleteRecipe(id: Int!): Int!
-  login(input: LoginInput!): LoginResponse!
+  followUser(followingId: Int!): User!
+  login(input: LoginInput!): AuthPayload!
   register(input: UserCreateInput!): User!
+  unfollowUser(followingId: Int!): User!
   updateRecipe(input: RecipeUpdateInput!): Recipe!
 }
 
@@ -119,9 +122,11 @@ input RecipeUpdateInput {
 
 type User {
   email: String!
+  followers: [User!]
+  following: [User!]
   id: ID!
   name: String
-  recipes: [Recipe!]
+  recipes: [Recipe!]!
 }
 
 input UserCreateInput {

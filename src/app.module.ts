@@ -12,6 +12,7 @@ import { UsersModule } from './users/users.module';
 import { RecipesModule } from './recipes/recipes.module';
 import { RatingsCommentsModule } from './ratings-comments/ratings-comments.module'; 
 import { AuthModule } from './auth/auth.module';
+import { FollowsModule } from './follows/follows.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { AuthModule } from './auth/auth.module';
     RecipesModule,
     RatingsCommentsModule,
     AuthModule,
+    FollowsModule
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService, RecipeResolver],

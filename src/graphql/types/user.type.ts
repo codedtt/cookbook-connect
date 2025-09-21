@@ -14,6 +14,12 @@ export class User {
   @Field({ nullable: true })
   name: string;
 
-  @Field(() => [Recipe], { nullable: true })
-  recipes: Recipe[] | null;
+  @Field(() => [Recipe])
+  recipes: Recipe[];
+
+  @Field(() => [User], { nullable: true })
+  following: User[];
+
+  @Field(() => [User], { nullable: true })
+  followers: User[];
 }
